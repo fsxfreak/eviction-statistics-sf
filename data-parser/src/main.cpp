@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <streambuf>
+#include <map>
+#include <vector>
 
 std::string getJSON(const std::string& filename)
 {
@@ -19,9 +21,15 @@ std::string getJSON(const std::string& filename)
 
 }
 
+struct EvictionNotice
+{
+
+
+};
+
 int main()
 {
-    std::string evictions = getJSON("eviction-notices.json");
+    std::string evictions = getJSON("eviction-notices-small.json");
 
     Json::Value root;
     Json::Reader reader;
@@ -29,17 +37,48 @@ int main()
     reader.parse(evictions, root);
 
     Json::Value data = root.get("data", "error");
-    Json::Value first = data[0];
 
-    std::vector<std::vector<Json::Value>> houses;
+    std::vector<std::vector<Json::Value>> rawNotices;
     for (unsigned int i = 0; i < data.size(); i++)
     {
-        houses.push_back(std::vector<Json::Value>());
+        rawNotices.push_back(std::vector<Json::Value>());
         for (auto it = data[i].begin(); it != data[i].end(); ++it)
         {
-            houses[i].push_back(*it);
+            rawNotices[i].push_back(*it);
         }
     }
 
-    std::cout << houses[4][9] << std::endl;
+    enum Columns
+    {
+        ADDRESS = 9, CITY, STATE, ZIP,
+        DATE,
+        NON_PAYMENT,
+        BREACH,
+        NUISANCE,
+        ILLEGAL,
+        FAIL_SIGN_RENEW,
+        ACCESS_DENIAL,
+        UNAPPROVED_SUBTENANT,
+        OWNER_MOVE_IN,
+        DEMOLITION,
+        CAPITAL_IMPROVEMENT,
+        SUBSTANTIAL_REHAB,
+        ELLIS_ACT_WITHDRAWAL,
+        CONDO_CONVERSION,
+        ROOMMATE_SAME_UNIT,
+        OTHER,
+        LATE_PAY,
+        LEAD_REMEDIATION,
+        DEVELOPMENT,
+        GOOD_SAMARITAN,
+        CONSTRAINTS,
+        CONSTRAINTS_DATE, SUPERVISOR,
+        NEIGHBORHOOD,
+        COORDINATES
+    };
+
+    std::cout << rawNotices[4][Columns::ILLEGAL] << std::endl;
+
+    std::map<std::vector<EvictionNotice>> neighborhoodNotices;
+
 }
