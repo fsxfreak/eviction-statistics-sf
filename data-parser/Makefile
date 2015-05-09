@@ -12,7 +12,7 @@ SRCDIRS := $(shell find . -name '*.$(SRCEXT)' -exec dirname {} \; | uniq)
 OBJS    := $(patsubst %.$(SRCEXT),$(OBJDIR)/%.o,$(SRCS))
 
 INCLUDE = -I./include
-CFLAGS  = -Wall -Werror -std=c++11 -c -O3 $(INCLUDE)
+CFLAGS  = -Wall -std=c++11 -c -O3 $(INCLUDE)
 
 all: $(APP)
  
