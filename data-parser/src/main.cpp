@@ -28,7 +28,7 @@ std::string getJSON(const std::string& filename)
 
 int main()
 {
-    std::string evictions = getJSON("eviction-notices-small.json");
+    std::string evictions = getJSON("eviction-notices.json");
 
     Json::Value root;
     Json::Reader reader;
@@ -82,35 +82,18 @@ int main()
     {
         if (columns[DATE].asString().compare("2005-01-01T00:00:00") < 0) //only entries recent 10 years
             continue;
+        std::string neighName = columns[Columns::NEIGHBORHOOD].asString();
+        if (neighName.compare("") == 0 
+         || neighName.compare("Golden Gate Park") == 0
+         || neighName.compare("Presidio") == 0)
+            continue;
 
         EvictionNotice notice;
 
-        notice.nonPayment = columns[NON_PAYMENT].asBool();
-        notice.breach = columns[BREACH].asBool();
-        notice.nuisance = columns[NUISANCE].asBool();
-        notice.illegal = columns[ILLEGAL].asBool();
-        notice.failSignRenew = columns[FAIL_SIGN_RENEW].asBool();
-        notice.accessDenial = columns[ACCESS_DENIAL].asBool();
-        notice.nonPayment = columns[NON_PAYMENT].asBool();
-        notice.breach = columns[BREACH].asBool();
-        notice.nuisance = columns[NUISANCE].asBool();
-        notice.illegal = columns[ILLEGAL].asBool();
-        notice.failSignRenew = columns[FAIL_SIGN_RENEW].asBool();
-        notice.accessDenial = columns[ACCESS_DENIAL].asBool();
-        notice.unapprovedSubtenant = columns[UNAPPROVED_SUBTENANT].asBool();
-        notice.ownerMoveIn = columns[OWNER_MOVE_IN].asBool();
-        notice.demolition = columns[DEMOLITION].asBool();
-        notice.capitalImprovement = columns[CAPITAL_IMPROVEMENT].asBool();
-        notice.substantialRehab = columns[SUBSTANTIAL_REHAB].asBool();
-        notice.ellisActWithdrawal = columns[ELLIS_ACT_WITHDRAWAL].asBool();
-        notice.condoConversion = columns[CONDO_CONVERSION].asBool();
-        notice.roommateSameUnit = columns[ROOMMATE_SAME_UNIT].asBool();
-        notice.other = columns[OTHER].asBool();
-        notice.latePay = columns[LATE_PAY].asBool();
-        notice.leadRemediation = columns[LEAD_REMEDIATION].asBool();
-        notice.development = columns[DEVELOPMENT].asBool();
-        notice.goodSamaritan = columns[GOOD_SAMARITAN].asBool();
-
+        for (int i = 0; i < notice.reasons.size(); i++)
+        {
+            notice.reasons[i] = columns[i + 14].asBool();
+        }
         neighborhoodNotices[columns[Columns::NEIGHBORHOOD].asString()].push_back(notice);
     }
 
@@ -121,74 +104,28 @@ int main()
     {
         for (auto jt = it->second.begin(); jt != it->second.end(); ++jt)
         {
-            if (jt->nonPayment)
-                neighborhoodsCounts[it->first].nonPayment++;
-            if (jt->breach)
-                neighborhoodsCounts[it->first].breach++;
-            if (jt->nuisance)
-                neighborhoodsCounts[it->first].nuisance++;
-            if (jt->illegal)
-                neighborhoodsCounts[it->first].illegal++;
-            if (jt->failSignRenew)
-                neighborhoodsCounts[it->first].failSignRenew++;
-            if (jt->accessDenial)
-                neighborhoodsCounts[it->first].accessDenial++;
-            if (jt->unapprovedSubtenant)
-                neighborhoodsCounts[it->first].unapprovedSubtenant++;
-            if (jt->ownerMoveIn)
-                neighborhoodsCounts[it->first].ownerMoveIn++;
-            if (jt->demolition)
-                neighborhoodsCounts[it->first].demolition++;
-            if (jt->capitalImprovement)
-                neighborhoodsCounts[it->first].capitalImprovement++;
-            if (jt->substantialRehab)
-                neighborhoodsCounts[it->first].substantialRehab++;
-            if (jt->ellisActWithdrawal)
-                neighborhoodsCounts[it->first].ellisActWithdrawal++;
-            if (jt->condoConversion)
-                neighborhoodsCounts[it->first].condoConversion++;
-            if (jt->roommateSameUnit)
-                neighborhoodsCounts[it->first].roommateSameUnit++;
-            if (jt->other)
-                neighborhoodsCounts[it->first].other++;
-            if (jt->latePay)
-                neighborhoodsCounts[it->first].latePay++;
-            if (jt->leadRemediation)
-                neighborhoodsCounts[it->first].leadRemediation++;
-            if (jt->development)
-                neighborhoodsCounts[it->first].development++;
-            if (jt->goodSamaritan)
-                neighborhoodsCounts[it->first].goodSamaritan++;
+            if (!(it->first.compare("Tenderloin") == 0 || it->first.compare("Mission") == 0 || it->first.compare("Portola") == 0)) continue;
+
+            for (int i = 0; i < jt->reasons.size(); i++)
+            {
+                if (jt->reasons[i])
+                    neighborhoodsCounts[it->first].counts[i]++;
+            }
         }
     }
-
-    std::cout << "neighborhood,nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenant,ownermovein,demolition,capitalimprovement,substantialrehab,ellisactwithdrawal,condoconversion,roommatesameunit,other,latepay,leadremediation,development,goodsamaritan" << std::endl;
+    
+    /*std::cout << "neighborhood,nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenant,ownermovein,demolition,capitalimprovement,substantialrehab,ellisactwithdrawal,condoconversion,roommatesameunit,other,latepay,leadremediation,development,goodsamaritan" << std::endl;
 
     std::for_each (neighborhoodsCounts.begin(), neighborhoodsCounts.end(),
         [] (const std::pair<std::string, NeighborhoodCounts>& counts) {
-
-            std::cout << counts.first << ','
-                      << counts.second.nonPayment << ','
-                      << counts.second.breach << ','
-                      << counts.second.nuisance << ','
-                      << counts.second.illegal << ','
-                      << counts.second.failSignRenew << ','
-                      << counts.second.accessDenial << ','
-                      << counts.second.unapprovedSubtenant << ','
-                      << counts.second.ownerMoveIn << ','
-                      << counts.second.demolition << ','
-                      << counts.second.capitalImprovement << ','
-                      << counts.second.substantialRehab << ','
-                      << counts.second.ellisActWithdrawal << ','
-                      << counts.second.condoConversion << ','
-                      << counts.second.roommateSameUnit << ','
-                      << counts.second.other << ','
-                      << counts.second.latePay << ','
-                      << counts.second.leadRemediation << ','
-                      << counts.second.development << ','
-                      << counts.second.goodSamaritan << std::endl;
+            std::cout << counts.first << ',';
+            for (int i = 0; i < counts.second.counts.size(); i++)
+            {
+                std::cout << counts.second.counts[i] << ',';
+            }
+            std::cout << '\b' << std::endl;
         }
-    );
+    );*/
 
-    
+    std::cout << chiSquareStatistic(neighborhoodsCounts) << std::endl;
 }
