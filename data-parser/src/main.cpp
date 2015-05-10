@@ -104,6 +104,7 @@ int main()
     {
         for (auto jt = it->second.begin(); jt != it->second.end(); ++jt)
         {
+            if (!(it->first.compare("Outer Richmond") == 0 || it->first.compare("Inner Richmond") == 0 || it->first.compare("Lone Mountain/USF") == 0)) continue;
 
             for (int i = 0; i < jt->reasons.size(); i++)
             {
