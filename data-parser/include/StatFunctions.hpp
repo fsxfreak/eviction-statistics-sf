@@ -9,6 +9,6 @@ nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenan
 rows -> neighborhoods
 */
 
-double chiSquareStatistic(const std::map<std::string, NeighborhoodCounts>& counts);
+double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts);
 
 #endif
