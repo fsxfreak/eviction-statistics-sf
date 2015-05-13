@@ -1,7 +1,7 @@
 #ifndef STAT_FUNCTIONS
 #define STAT_FUNCTIONS
 
-#include <map>
+#include <vector>
 #include <EvictionNotice.hpp>
 /*
 nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenant,ownermovein,demolition,capitalimprovement,substantialrehab,ellisactwithdrawal,condoconversion,roommatesameunit,other,latepay,leadremediation,development,goodsamaritan
@@ -9,6 +9,6 @@ nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenan
 rows -> neighborhoods
 */
 
-double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts);
+double chiSquareStatistic(std::vector<NeighborhoodCounts> counts);
 
 #endif

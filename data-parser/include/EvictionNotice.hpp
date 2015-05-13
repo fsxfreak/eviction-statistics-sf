@@ -33,6 +33,7 @@ struct EvictionNotice
 
 struct NeighborhoodCounts
 {
+    std::string neighborhoodName;
     std::array<double, 19> counts;
 };
 

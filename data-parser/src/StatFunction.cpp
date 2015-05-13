@@ -5,90 +5,50 @@
 #include <iostream>
 #include <cassert>
 
-void printRemoval(int row, int col, const std::map<std::string, NeighborhoodCounts>& countsCopy)
+std::string getComponentLabel(const NeighborhoodCounts& count, int col)
 {
-    std::string neighborhood = (std::next(countsCopy.begin(), row))->first;
-    std::string reason;
-    switch (col)
+    const std::vector<std::string> REASONS = 
     {
-    case Indices::NON_PAYMENT:
-        reason = "NON_PAYMENT";
-        break;
-    case Indices::BREACH:
-        reason = "BREACH";
-        break;
-    case Indices::NUISANCE:
-        reason = "NUISANCE";
-        break;
-    case Indices::ILLEGAL:
-        reason = "ILLEGAL";
-        break;
-    case Indices::FAIL_SIGN_RENEW:
-        reason = "FAIL_SIGN_RENEW";
-        break;
-    case Indices::ACCESS_DENIAL:
-        reason = "ACCESS_DENIAL";
-        break;
-    case Indices::UNAPPROVED_SUBTENANT:
-        reason = "UNAPPROVED_SUBTENANT";
-        break;
-    case Indices::OWNER_MOVE_IN:
-        reason = "OWNER_MOVE_IN";
-        break;
-    case Indices::DEMOLITION:
-        reason = "DEMOLITION";
-        break;
-    case Indices::CAPITAL_IMPROVEMENT:
-        reason = "CAPITAL_IMPROVEMENT";
-        break;
-    case Indices::SUBSTANTIAL_REHAB:
-        reason = "SUBSTANTIAL_REHAB";
-        break;
-    case Indices::ELLIS_ACT_WITHDRAWAL:
-        reason = "ELLIS_ACT_WITHDRAWAL";
-        break;
-    case Indices::CONDO_CONVERSION:
-        reason = "CONDO_CONVERSION";
-        break;
-    case Indices::ROOMMATE_SAME_UNIT:
-        reason = "ROOMMATE_SAME_UNIT";
-        break;
-    case Indices::OTHER:
-        reason = "OTHER";
-        break;
-    case Indices::LATE_PAY:
-        reason = "LATE_PAY";
-        break;
-    case Indices::LEAD_REMEDIATION:
-        reason = "LEAD_REMEDIATION";
-        break;
-    case Indices::DEVELOPMENT:
-        reason = "DEVELOPMENT";
-        break;
-    case Indices::GOOD_SAMARITAN:
-        reason = "GOOD_SAMARITAN";
-        break;
-    }
-    std::cout << neighborhood << ',' << reason << std::endl;
+        "NON_PAYMENT",
+        "BREACH",
+        "NUISANCE",
+        "ILLEGAL",
+        "FAIL_SIGN_RENEW",
+        "ACCESS_DENIAL",
+        "UNAPPROVED_SUBTENANT",
+        "OWNER_MOVE_IN",
+        "DEMOLITION",
+        "CAPITAL_IMPROVEMENT",
+        "SUBSTANTIAL_REHAB",
+        "ELLIS_ACT_WITHDRAWAL",
+        "CONDO_CONVERSION",
+        "ROOMMATE_SAME_UNIT",
+        "OTHER",
+        "LATE_PAY",
+        "LEAD_REMEDIATION",
+        "DEVELOPMENT",
+        "GOOD_SAMARITAN"
+    };
+    return count.neighborhoodName + ',' + REASONS[col];
 } 
 
-double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
+double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
 {
     std::vector<int> rowTotals;
     std::vector<int> columnTotals(19);
 
     std::for_each(counts.cbegin(), counts.cend(),
-        [&] (const std::pair<std::string, NeighborhoodCounts>& row) {
+        [&] (const NeighborhoodCounts& row) {
             int rowTotal = 0;
-            for (int i = 0; i < row.second.counts.size(); i++)
+            for (int i = 0; i < row.counts.size(); i++)
             {
-                rowTotal += row.second.counts[i];
+                rowTotal += row.counts[i];
             }
             rowTotals.push_back(rowTotal);
 
             for (int i = 0; i < columnTotals.size(); i++)
             {
-                columnTotals[i] += row.second.counts[i];                
+                columnTotals[i] += row.counts[i];                
             }
         }
     );
@@ -100,6 +60,7 @@ double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
     std::vector<NeighborhoodCounts> expecteds(rowTotals.size());
     for (int i = 0; i < expecteds.size(); i++)
     {
+        expecteds[i].neighborhoodName = counts[i].neighborhoodName;
         for (int j = 0; j < expecteds[i].counts.size(); j++)
         {
             double expected = rowTotals[i] * columnTotals[j] / static_cast<double>(total);
@@ -107,11 +68,15 @@ double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
         }
     }
 
+    std::cout << "Expected matrix," << std::endl;
     for (int i = 0; i < expecteds.size(); i++)
     {
+        std::cout << expecteds[i].neighborhoodName << ',';
         for (int j = 0; j < expecteds[i].counts.size(); j++)
         {
-            std::cout << expecteds[i].counts[j] << ' ';
+            std::cout << expecteds[i].counts[j];
+            if (j != expecteds[i].counts.size() - 1)
+                std::cout << ',';
         }
         std::cout << std::endl;
     }
@@ -121,8 +86,8 @@ double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
     std::vector<int> removeColumns;
     int i = 0;
     std::for_each(counts.cbegin(), counts.cend(),
-        [&] (const std::pair<std::string, NeighborhoodCounts>& row) {
-            for (int j = 0; j < row.second.counts.size(); j++)
+        [&] (const NeighborhoodCounts& row) {
+            for (int j = 0; j < row.counts.size(); j++)
             {
                 if (expecteds[i].counts[j] < EPSILON)
                     removeColumns.push_back(j);
@@ -134,8 +99,8 @@ double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
     double chiStatistic = 0;
     i = 0;
     std::for_each (counts.cbegin(), counts.cend(), 
-        [&] (const std::pair<std::string, NeighborhoodCounts>& row) {
-            for (int j = 0; j < row.second.counts.size(); j++)
+        [&] (const NeighborhoodCounts& row) {
+            for (int j = 0; j < row.counts.size(); j++)
             {
                 bool shouldContinue = false;
                 for (int k = 0; k < removeColumns.size(); k++)
@@ -144,14 +109,14 @@ double chiSquareStatistic(std::map<std::string, NeighborhoodCounts> counts)
                         shouldContinue = true;
                 }
 
-                if (shouldContinue) { printRemoval(i, j, counts); continue; }
+                if (shouldContinue) continue;
 
-                double observed = row.second.counts[j];
+                double observed = row.counts[j];
                 double expected = expecteds[i].counts[j];
 
                 double component = (observed - expected) * (observed - expected) / expected; 
                 chiStatistic += component;
-                std::cout << component << std::endl;
+                std::cout << getComponentLabel(row, j) << ',' << component << std::endl;
             }
             i++;
         }
