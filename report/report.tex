@@ -2,6 +2,7 @@
 
 \usepackage{listings}
 \usepackage{color}
+\usepackage{caption}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -45,16 +46,36 @@ Renter eviction leads to the displacement of families and an influx of people at
 \section{Data Collection}
 We downloaded data on eviction statistics from SF OpenData and counted each of the reasons for eviction with a program we designed and created using C++. For some of these expected counts, the data was less than five so we were unable to incorporate it in our testing. After separating the data into eleven districts based off location, we performed $\chi ^{2}$ Data Tests for Homogeneity using the valid counts.
 \section{Analysis}
-sdfsdfs
+\subsection{Summary Statistics}
+This table and section is for testing.
+\begin{table}[h]
+\caption{Expected Counts}
+\centering
+\begin{tabular}{l r r}
+Neighborhood   & Illegal  & Nuisance \\ \hline
+Inner Richmond & 57.4839  & 8.5161   \\
+Lone Mountain  & 53.1290  & 7.8710   \\ 
+Outer Richmond & 132.3871 & 19.6129  \\ 
+\end{tabular}
+\end{table}
 \section{Inferential Procedures}
 \subsection{District 1}
 Outer Richmond, Inner Richmond, Lone Mountain
 \subsection{District 2}
+Seacliff, Presidio Heights, Marina, Russian Hill, Pacific Heights
 \subsection{District 3}
+North Beach, Nob Hill
 \subsection{District 4}
+Sunset/Parkside
 \subsection{District 5}
-
-
+Haight Ashbury, Hayes Valley, Western Addition
+\subsection{District 6}
+Tenderloin, South of Market, Financial District/South Beach, Mission Bay
+\subsection{District 7}
+\subsection{District 8}
+\subsection{District 9}
+\subsection{District 10}
+\subsection{District 11}
 \section{Conclusion}
 sdfsdafasdf
 \newpage

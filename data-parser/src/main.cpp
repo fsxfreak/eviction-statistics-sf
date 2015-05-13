@@ -247,19 +247,6 @@ int main(int argc, const char* argv[])
     std::map<std::string, std::vector<EvictionNotice>> parsedNotices = convertRawToBools(rawNotices);
     std::map<std::string, NeighborhoodCounts> mappedCounts = createCounts(parsedNotices, selectedNeighborhoods);
     std::vector<NeighborhoodCounts> counts = mapToVec(mappedCounts);
-    
-    /*std::cout << "neighborhood,nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenant,ownermovein,demolition,capitalimprovement,substantialrehab,ellisactwithdrawal,condoconversion,roommatesameunit,other,latepay,leadremediation,development,goodsamaritan" << std::endl;
-
-    std::for_each (neighborhoodsCounts.begin(), neighborhoodsCounts.end(),
-        [] (const std::pair<std::string, NeighborhoodCounts>& counts) {
-            std::cout << counts.first << ',';
-            for (int i = 0; i < counts.second.counts.size(); i++)
-            {
-                std::cout << counts.second.counts[i] << ',';
-            }
-            std::cout << '\b' << std::endl;
-        }
-    );*/
 
     auto selectedColumnCounts = selectColumns(selectedColumns, counts);
 

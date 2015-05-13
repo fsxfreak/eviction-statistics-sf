@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <iomanip>
 #include <cassert>
 
 std::string getComponentLabel(const NeighborhoodCounts& count, int col)
@@ -31,6 +32,11 @@ std::string getComponentLabel(const NeighborhoodCounts& count, int col)
     };
     return count.neighborhoodName + ',' + REASONS[col];
 } 
+
+double chiAreaRight(double testStatistic, double df)
+{
+    
+}
 
 double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
 {
@@ -71,6 +77,8 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
     std::cout << "Expected matrix," << std::endl;
     for (int i = 0; i < expecteds.size(); i++)
     {
+        std::cout << std::fixed;
+        std::cout << std::setprecision(4);
         std::cout << expecteds[i].neighborhoodName << ',';
         for (int j = 0; j < expecteds[i].counts.size(); j++)
         {
