@@ -23,7 +23,8 @@ To download, simply
 
 #### Running
 
-    $ ./eviction-parser
+    $ ./eviction-parser [data.json] -n ["neighborhoods"...] -c [columns...]
+    $ ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c ILLEGAL NUISANCE > output.csv
 
 #### Usage
 
