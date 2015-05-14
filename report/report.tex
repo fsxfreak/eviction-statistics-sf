@@ -2,7 +2,6 @@
 
 \usepackage{listings}
 \usepackage{color}
-\usepackage{caption}
 \usepackage{placeins}
 
 
@@ -27,6 +26,8 @@
   tabsize=4
 }
 
+\setlength{\parindent}{0pt}
+
 %opening
 \title{Causes for Eviction Notices in Assorted Neighborhoods of San Francisco}
 \author{
@@ -47,6 +48,10 @@ Renter eviction leads to the displacement of families and an influx of people at
 
 \section{Data Collection}
 We downloaded data on eviction statistics from SF OpenData and counted each of the reasons for eviction with a program we designed and created using C++. For some of these expected counts, the data was less than five so we were unable to incorporate it in our testing. After separating the data into eleven districts based off location, we performed $\chi ^{2}$ Data Tests for Homogeneity using the valid counts.
+\section{Data Context}
+here we explain what the various eviction reasons are, and show maps of san francisco containing all the neighborhoods split up into regions
+
+can also talk about the legal issues with the landlord tenant relationship
 \section{Analysis}
 \subsection{Summary Statistics}
 This table and section is for testing.
@@ -59,12 +64,13 @@ Outer Richmond, Inner Richmond, Lone Mountain
 \begin{tabular}{|l | l|}
 Neighborhoods & Inner Richmond, Lone Mountain, Outer Richmond \\
 Categories    & Illegal, Nuisance 							  \\
-\multicolumn{3}{|c|}{Test calculations}
-sfd \vline sdf \vline sdf
 \end{tabular}
 \caption{Selected Neighborhoods and Categories}
 \end{table}
 \FloatBarrier
+
+how to illustrate p values, df, chi statistic in beautiful way
+
 \subsection{District 2}
 Seacliff, Presidio Heights, Marina, Russian Hill, Pacific Heights
 \subsection{District 3}

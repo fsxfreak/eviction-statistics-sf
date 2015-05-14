@@ -32,65 +32,134 @@ std::string getComponentLabel(const NeighborhoodCounts& count, int col)
         "GOOD_SAMARITAN"
     };
     return count.neighborhoodName + ',' + REASONS[col];
-} 
+}
 
-double igf(double s, double z)
+ /*  The following c++ functions for calculating normal and
+        chi-square probabilities and critical values were adapted by
+        John Walker from C implementations
+        written by Gary Perlman of Wang Institute, Tyngsboro, MA
+        01879.  Both the original C code and this c++ edition
+        are in the public domain.  */
+
+/*  POZ  --  probability of normal z value
+
+    Adapted from a polynomial approximation in:
+            Ibbetson D, Algorithm 209
+            Collected Algorithms of the CACM 1963 p. 616
+    Note:
+            This routine has six digit accuracy, so it is only useful for absolute
+            z values < 6.  For z values >= to 6.0, poz() returns 0.0.
+*/ 
+
+//ibbetson D, algorithm 209, from Gary Perlman
+double poz(double z)
 {
-    if (z < 0.0) return 0.0;
+    double y, x, w;
+    double Z_MAX = 6.0;
 
-    double sc = (1.0 / s);
-    s *= pow(z, s);
-    sc *= exp(-z);
-
-    double sum = 1.0;
-    double nom = 1.0;
-    double denom = 1.0;
-
-    for (int i = 0; i < 200; i++)
+    if (z == 0.0) 
     {
-        nom *= z;
-        s++;
-        denom *= s;
-        sum += (nom / denom);
+        x = 0.0;
+    }
+    else
+    {
+        y = 0.5 * abs(z);
+        if (y >= (Z_MAX * 0.5)) 
+        {
+            x = 1.0;
+        }
+        else if (y < 1.0)
+        {
+            w = y * y;
+            x = ((((((((0.000124818987 * w
+                      - 0.001075204047) * w + 0.005198775019) * w
+                      - 0.019198292004) * w + 0.059054035642) * w
+                      - 0.151968751364) * w + 0.319152932694) * w
+                      - 0.531923007300) * w + 0.797884560593) * y * 2.0;
+        }
+        else
+        {
+            y -= 2.0;
+            x = (((((((((((((-0.000045255659 * y
+                            + 0.000152529290) * y - 0.000019538132) * y
+                            - 0.000676904986) * y + 0.001390604284) * y
+                            - 0.000794620820) * y - 0.002034254874) * y
+                            + 0.006549791214) * y - 0.010557625006) * y
+                            + 0.011630447319) * y - 0.009279453341) * y
+                            + 0.005353579108) * y - 0.002141268741) * y
+                            + 0.000535310849) * y + 0.999936657524;
+        }
+    }
+    return z > 0.0 ? ((x + 1.0) * 0.5) : ((1.0 - x) * 0.5);
+}
+
+const double BIGX = 20.0;
+double ex(double x) { return (x < -BIGX) ? 0.0 : exp(x); }
+
+/*  POCHISQ  --  probability of chi-square value
+
+              Adapted from:
+                      Hill, I. D. and Pike, M. C.  Algorithm 299
+                      Collected Algorithms for the CACM 1967 p. 243
+              Updated for rounding errors based on remark in
+                      ACM TOMS June 1985, page 185
+*/
+double chiAreaRight(double x, int df)
+{
+    const double LOG_SQRT_PI = 0.5723649429247000870717135;
+    const double I_SQRT_PI   = 0.5641895835477562869480795;
+
+    double a, y, s;
+    double e, c, z;
+    bool even;
+
+    if (x <= 0.0 || df < 1) return 1.0;
+
+    a = 0.5 * x;
+    even = (df % 2 == 0);
+
+    if (df > 1)
+        y = ex(-a);
+
+    s = even ? y : (2.0 * poz(-sqrt(x)));
+
+    if (df > 2)
+    {
+        x = 0.5 * (df - 1.0);
+        z = even ? 1.0 : 0.5;
+        if (a > BIGX)
+        {
+            e = even ? 0.0 : LOG_SQRT_PI;
+            c = log(a);
+            while (z <= x)
+            {
+                e = log(z) + e;
+                s += ex(c * z - a - e);
+                z += 1.0;
+            }
+            return s;
+        }
+        else
+        {
+            e = even ? 1.0 : (I_SQRT_PI / sqrt(a));
+            c = 0.0;
+            while (z <= x) 
+            {
+                e = e * (a / z);
+                c = c + e;
+                z += 1.0;
+            }
+            return c * y + s;
+        }
+    }
+    else
+    {
+        return s;
     }
 
-    return sum * sc;
 }
 
-double fast_gamma(double z)
-{
-    const double INV_E = 0.36787944117144232159552377016147;
-    const double TWOPI = 6.283185307179586476925286766559;
-
-    double d = 1.0 / (10.0 * z);
-    d = 1.0 / ((12 * z) - d);
-    d = (d + z) * INV_E;
-    d = pow(d, z);
-    d *= sqrt(TWOPI / z);
-
-    return d;
-}
-
-double chiAreaRight(double testStatistic, int df)
-{
-    if (testStatistic < 0 || df < 1)
-    {
-        return 0.0;
-    }
-
-    double k = df * 0.5;
-    double x = testStatistic * 0.5;
-
-    if (df == 2) return exp(-1.0 * x);
-
-    double pVal = igf(k, x);
-
-    if (std::isnan(pVal) || std::isinf(pVal) || pVal <= 1e-8) return 1e-14;
-
-    pVal /= fast_gamma(k);
-    return (1.0 - pVal);
-}
-
+//hill, I. D. and Pike, M. C. Algorithm 299
 double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
 {
     std::vector<int> rowTotals;
