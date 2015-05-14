@@ -8,4 +8,4 @@ Lone Mountain/USF,NUISANCE,0.1551
 Lone Mountain/USF,ILLEGAL,1.0472
 Outer Richmond,NUISANCE,0.3081
 Outer Richmond,ILLEGAL,2.0800
-Chi,5.2573
+chi,5.2573,df,2,pVal,0.0722

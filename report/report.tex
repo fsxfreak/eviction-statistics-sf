@@ -3,6 +3,8 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{caption}
+\usepackage{placeins}
+
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -48,19 +50,21 @@ We downloaded data on eviction statistics from SF OpenData and counted each of t
 \section{Analysis}
 \subsection{Summary Statistics}
 This table and section is for testing.
-\begin{table}[h]
-\caption{Expected Counts}
-\centering
-\begin{tabular}{l r r}
-Neighborhood   & Illegal  & Nuisance \\ \hline
-Inner Richmond & 57.4839  & 8.5161   \\
-Lone Mountain  & 53.1290  & 7.8710   \\ 
-Outer Richmond & 132.3871 & 19.6129  \\ 
-\end{tabular}
-\end{table}
+
 \section{Inferential Procedures}
 \subsection{District 1}
 Outer Richmond, Inner Richmond, Lone Mountain
+\begin{table}[h]
+\centering
+\begin{tabular}{|l | l|}
+Neighborhoods & Inner Richmond, Lone Mountain, Outer Richmond \\
+Categories    & Illegal, Nuisance 							  \\
+\multicolumn{3}{|c|}{Test calculations}
+sfd \vline sdf \vline sdf
+\end{tabular}
+\caption{Selected Neighborhoods and Categories}
+\end{table}
+\FloatBarrier
 \subsection{District 2}
 Seacliff, Presidio Heights, Marina, Russian Hill, Pacific Heights
 \subsection{District 3}

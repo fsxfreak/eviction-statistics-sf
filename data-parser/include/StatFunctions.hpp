@@ -10,5 +10,7 @@ rows -> neighborhoods
 */
 
 double chiSquareStatistic(std::vector<NeighborhoodCounts> counts);
+double chiAreaRight(double testStatistic, int df);
+int getDF(std::vector<NeighborhoodCounts> matrix);
 
 #endif

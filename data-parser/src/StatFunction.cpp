@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cassert>
+#include <cmath>
 
 std::string getComponentLabel(const NeighborhoodCounts& count, int col)
 {
@@ -33,9 +34,61 @@ std::string getComponentLabel(const NeighborhoodCounts& count, int col)
     return count.neighborhoodName + ',' + REASONS[col];
 } 
 
-double chiAreaRight(double testStatistic, double df)
+double igf(double s, double z)
 {
-    
+    if (z < 0.0) return 0.0;
+
+    double sc = (1.0 / s);
+    s *= pow(z, s);
+    sc *= exp(-z);
+
+    double sum = 1.0;
+    double nom = 1.0;
+    double denom = 1.0;
+
+    for (int i = 0; i < 200; i++)
+    {
+        nom *= z;
+        s++;
+        denom *= s;
+        sum += (nom / denom);
+    }
+
+    return sum * sc;
+}
+
+double fast_gamma(double z)
+{
+    const double INV_E = 0.36787944117144232159552377016147;
+    const double TWOPI = 6.283185307179586476925286766559;
+
+    double d = 1.0 / (10.0 * z);
+    d = 1.0 / ((12 * z) - d);
+    d = (d + z) * INV_E;
+    d = pow(d, z);
+    d *= sqrt(TWOPI / z);
+
+    return d;
+}
+
+double chiAreaRight(double testStatistic, int df)
+{
+    if (testStatistic < 0 || df < 1)
+    {
+        return 0.0;
+    }
+
+    double k = df * 0.5;
+    double x = testStatistic * 0.5;
+
+    if (df == 2) return exp(-1.0 * x);
+
+    double pVal = igf(k, x);
+
+    if (std::isnan(pVal) || std::isinf(pVal) || pVal <= 1e-8) return 1e-14;
+
+    pVal /= fast_gamma(k);
+    return (1.0 - pVal);
 }
 
 double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
@@ -131,4 +184,14 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
     );
 
     return chiStatistic;
+}
+
+int getDF(std::vector<NeighborhoodCounts> matrix)
+{
+    int numColumns = 0;
+    for (int i = 0; i < matrix[0].counts.size(); i++)
+    {
+        if (matrix[0].counts[i] > 0) numColumns++;
+    }
+    return (numColumns - 1) * (matrix.size() - 1);
 }
