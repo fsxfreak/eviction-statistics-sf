@@ -6,8 +6,6 @@
 #include <streambuf>
 #include <map>
 #include <vector>
-#include <statistics.h>
-#include <specialfunctions.h>
 #include <StatFunctions.hpp>
 
 std::string getJSON(const std::string& filename)
@@ -250,10 +248,8 @@ int main(int argc, const char* argv[])
 
     auto selectedColumnCounts = selectColumns(selectedColumns, counts);
 
-    //double chi = chiSquareStatistic(selectedColumnCounts);
-    //int df = getDF(selectedColumnCounts);
-    double chi = 290.285192;
-    double df = 255;
+    double chi = chiSquareStatistic(selectedColumnCounts);
+    int df = getDF(selectedColumnCounts);
     double pVal = chiAreaRight(chi, df);
     std::cout << "chi,"   << chi 
               << ",df,"   << df

@@ -1,0 +1,141 @@
+Plan
+Parse csv into program
+	- map of vector - neighborhoods -> all houses in each neighborhood
+	- create neighborhood class that contains neighborhood name and counts for each reason column
+
+^ all done
+Chi square analyses
+	- first group neighborhoods into regions, and test for homogeneity in these regions
+	- then do furhter analysis on neighborhoods that are not homogeneous
+
+Typing time
+	- Abstract
+	- Data collection methods
+	- Conditions
+	- analysis
+	- social commentary
+	- conclusion
+Bayview Hunters Point	Bernal Heights	Castro/Upper Market	Chinatown	Excelsior	Financial District/South Beach	Glen Park		Haight Ashbury	Hayes Valley	Inner Richmond	Inner Sunset	Japantown	Lakeshore	Lincoln Park	Lone Mountain/USF	Marina	McLaren Park	Mission	Mission Bay	Nob Hill	Noe Valley	North Beach	Oceanview/Merced/Ingleside	Outer Mission	Outer Richmond	Pacific Heights	Portola	Potrero Hill		Presidio Heights	Russian Hill	Seacliff	South of Market	Sunset/Parkside	Tenderloin	Treasure Island	Twin Peaks	Visitacion Valley	West of Twin Peaks	Western Addition
+
+nonpayment
+breach - when lease has ended or some other contractual breach
+nuisance
+illegal
+failsignrenew
+accessdenial - http://www.friedwilliams.com/pages/articles/id5004.html
+unapprovedsubtenant - roommate of tenant wishes to stay after original tenant leaves
+ownermovein
+demolition
+capitalimprovement - temporary improvement where uninhabitable 
+substantialrehab - eviction for massive remodeling, at least 75% of what it would cost to tear down apartment and rebuild anew, or at least 50 years old, related to capital improvement
+ellisactwithdrawal - eviction because going out of business, ending the rent business, reltaed to owner move in 
+condoconversion - owner evicts to conver to condo, related to ellis act withdrawal
+roommatesameunit - where owner lives with the tenants in the same unit as roommates
+other - ? not analyze
+latepay - 
+leadremediation - not analyze, only 6 
+development
+goodsamaritan - ? not analyze, only 1
+
+http://www.sfrb.org/index.aspx?page=4#Eviction
+a. tenant action - nonpayment, breach, nuisance, illegal, unapproved subtenant, latepay
+b. landlord action - failsignrenew, owner move in, capital improvement, substantial rehab, roommate same unit
+c. development - demolition, ellis act withdrawal, condo conversion
+d. just cause (http://www.sfrb.org/index.aspx?page=962) - nonpayment, latepayment, breach of lease, ownermovein, capitalimprovement, ellisactwithdrawal, nuisance, illegal, demolition
+
+district 1
+	Outer Richmond
+	Inner Richmond
+	Lone Mountain/USF
+
+a. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d1a-nonpay-breach-nuisnc-illegal-unappsubt-late.txt
+b. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d1b-failsign-ownermove-capitalimp-substanrehab-roommatesame.txt
+c. 
+
+district 2
+	Seacliff = lake cliff
+	Presidio Heights = jordan park (laurel heights)
+	Marina = cow hollow
+	Russian Hill
+	Pacific Heights
+district 3
+	North Beach = north water front
+	Nob Hill = telegraph hill
+district 4	//nothing tocompare to.
+	Sunset/Parkside
+district 5
+	Haight Ashbury = ashbury heights
+	Hayes Valley - buena vista park = north panhandle
+	Western Addition = alamo square = lower pacific heights 
+district 6
+	Tenderloin = van ness civic center
+	South of Market
+	Financial District/South Beach
+	Mission Bay
+district 7
+	Lakeshore = merced manor = stonestown = lakeside
+	golden gate heights
+	forest hill
+	west portal
+	saint francis west
+	balboa terrace
+	monterey heights
+	mount davidson manor
+	ingleside terrace
+	westwood park
+	merced heights
+	sunnyside
+	westwood highlands
+	sherwood forest
+	miraloma park
+	forest hills extension
+	midtown terrace
+	forest knolls
+	clarendon hegiths
+district 8
+	cornona heights
+	duboce triangle
+	missiondolores
+	eureka valley dolores heights
+	noe valley
+	twin peaks
+	diamond eights
+	glen park
+district 9
+	portola 
+	bernal eights south
+	bernal heights north
+	inner missoin
+district 10
+	visitacion valley bayview heights
+	bayview district
+	silver terrace
+	hunter point
+	portero hill
+district 11
+	Oceanview/Merced/Ingleside
+	outer mission
+	crocker amazon
+	excelsior
+	mission terrace
+
+
+notes
+	strip all eviction notices that are too early (<2009?)
+	from notice vector, parse out early dates
+	parse out into map of vector of jsonvalue = neighborhood -> evictionnotice
+	create counts by looking at true
+	need to get chi square area to the right 
+^all done
+- need to aggregate all neighborhoods of a district into one counts for later
+	-d selector for district 
+
+dater manipulation
+	- remove the golden gate park because only 5 evictions
+	- remove entries with no neighborhood
+	- remove entries earlier than january 2005
+	- remove presidio
+
+how to write some stuff
+http://abacus.bates.edu/~ganderso/biology/resources/writing/HTWstats.html
+http://www.amstat.org/education/posterprojects/projects/2013/HonorableMention10-12.pdf
