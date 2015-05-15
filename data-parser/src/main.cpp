@@ -243,6 +243,8 @@ int main(int argc, const char* argv[])
 
     std::vector<std::vector<Json::Value>> rawNotices = generateRawNotices(data);
     std::map<std::string, std::vector<EvictionNotice>> parsedNotices = convertRawToBools(rawNotices);
+    
+    //TODO iterate here and generate all of our chis
     std::map<std::string, NeighborhoodCounts> mappedCounts = createCounts(parsedNotices, selectedNeighborhoods);
     std::vector<NeighborhoodCounts> counts = mapToVec(mappedCounts);
 

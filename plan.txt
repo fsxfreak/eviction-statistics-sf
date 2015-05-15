@@ -48,19 +48,32 @@ district 1
 	Inner Richmond
 	Lone Mountain/USF
 
-a. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d1a-nonpay-breach-nuisnc-illegal-unappsubt-late.txt
-b. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d1b-failsign-ownermove-capitalimp-substanrehab-roommatesame.txt
-c. 
+a. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d1a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d1b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d1c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Inner Richmond" "Lone Mountain/USF" "Outer Richmond" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d1d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
 
 district 2
-	Seacliff = lake cliff
+	//remove, too few Seacliff = lake cliff
 	Presidio Heights = jordan park (laurel heights)
 	Marina = cow hollow
 	Russian Hill
 	Pacific Heights
+
+a. ./eviction-parser eviction-notices.json -n "Presidio Heights" "Marina" "Russian Hill" "Pacific Heights" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d2a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Presidio Heights" "Marina" "Russian Hill" "Pacific Heights" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d2b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Presidio Heights" "Marina" "Russian Hill" "Pacific Heights" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d2c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Presidio Heights" "Marina" "Russian Hill" "Pacific Heights" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d2d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
 district 3
 	North Beach = north water front
 	Nob Hill = telegraph hill
+
+a. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d3a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d3b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d3c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d3d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
 district 4	//nothing tocompare to.
 	Sunset/Parkside
 district 5
@@ -135,6 +148,7 @@ dater manipulation
 	- remove entries with no neighborhood
 	- remove entries earlier than january 2005
 	- remove presidio
+	- remove seacliff
 
 how to write some stuff
 http://abacus.bates.edu/~ganderso/biology/resources/writing/HTWstats.html
