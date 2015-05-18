@@ -1,0 +1,16 @@
+Expected matrix,
+Bayview Hunters Point,84.4639,118.6863,75.7262,16.0190,0.0000,0.0000,0.0000,37.8631,9.4658,3.6407,0.0000,9.4658,0.0000,0.0000,0.0000,27.6692,0.0000,0.0000,0.0000
+Visitacion Valley,31.5361,44.3137,28.2738,5.9810,0.0000,0.0000,0.0000,14.1369,3.5342,1.3593,0.0000,3.5342,0.0000,0.0000,0.0000,10.3308,0.0000,0.0000,0.0000
+Bayview Hunters Point,NON_PAYMENT,0.1421
+Bayview Hunters Point,BREACH,0.0240
+Bayview Hunters Point,NUISANCE,0.6987
+Bayview Hunters Point,ILLEGAL,0.0601
+Bayview Hunters Point,OWNER_MOVE_IN,1.2440
+Bayview Hunters Point,LATE_PAY,0.1963
+Visitacion Valley,NON_PAYMENT,0.3805
+Visitacion Valley,BREACH,0.0642
+Visitacion Valley,NUISANCE,1.8713
+Visitacion Valley,ILLEGAL,0.1609
+Visitacion Valley,OWNER_MOVE_IN,3.3319
+Visitacion Valley,LATE_PAY,0.5259
+chi,8.6997,df,8,pVal,0.3683

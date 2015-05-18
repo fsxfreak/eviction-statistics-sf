@@ -74,64 +74,72 @@ b. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c FAIL_S
 c. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d3c-demo-ellis-condo.csv
 d. ./eviction-parser eviction-notices.json -n "North Beach" "Nob Hill" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d3d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
 
-district 4	//nothing tocompare to.
+district 4	//ONLY ONE
 	Sunset/Parkside
 district 5
 	Haight Ashbury = ashbury heights
 	Hayes Valley - buena vista park = north panhandle
 	Western Addition = alamo square = lower pacific heights 
+
+a. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d5a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d5b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d5c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d5d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
 district 6
 	Tenderloin = van ness civic center
 	South of Market
 	Financial District/South Beach
 	Mission Bay
-district 7
-	Lakeshore = merced manor = stonestown = lakeside
-	golden gate heights
-	forest hill
-	west portal
-	saint francis west
-	balboa terrace
-	monterey heights
-	mount davidson manor
-	ingleside terrace
-	westwood park
-	merced heights
-	sunnyside
-	westwood highlands
-	sherwood forest
-	miraloma park
-	forest hills extension
-	midtown terrace
-	forest knolls
-	clarendon hegiths
-district 8
-	cornona heights
-	duboce triangle
-	missiondolores
-	eureka valley dolores heights
-	noe valley
-	twin peaks
-	diamond eights
-	glen park
-district 9
-	portola 
-	bernal eights south
-	bernal heights north
-	inner missoin
-district 10
-	visitacion valley bayview heights
-	bayview district
-	silver terrace
-	hunter point
-	portero hill
-district 11
-	Oceanview/Merced/Ingleside
-	outer mission
-	crocker amazon
-	excelsior
-	mission terrace
 
+a. ./eviction-parser eviction-notices.json -n "Tenderloin" "South of Market" "Financial District/South Beach" "Mission Bay" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d6a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Tenderloin" "South of Market" "Financial District/South Beach" "Mission Bay" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d6b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Tenderloin" "South of Market" "Financial District/South Beach" "Mission Bay" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d6c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Tenderloin" "South of Market" "Financial District/South Beach" "Mission Bay" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d6d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
+district 7 //ONLY ONE
+	Lakeshore = merced manor = stonestown = lakeside
+
+district 8
+	noe valley   yeeee
+	twin peaks   yeeee
+	glen park yeee
+
+a. ./eviction-parser eviction-notices.json -n "Noe Valley" "Twin Peaks" "Glen Park" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d8a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Noe Valley" "Twin Peaks" "Glen Park" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d8b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Noe Valley" "Twin Peaks" "Glen Park" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d8c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Noe Valley" "Twin Peaks" "Glen Park" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d8d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
+district 9
+	portola yeeeeeeee
+	bernal heights = south = north
+	mission= inner missoin
+
+a. ./eviction-parser eviction-notices.json -n "Portola" "Bernal Heights" "Mission" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d9a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Portola" "Bernal Heights" "Mission" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d9b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Portola" "Bernal Heights" "Mission" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d9c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Portola" "Bernal Heights" "Mission" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d9d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
+district 10
+	visitacion valley bayview heights ye
+	bayview district ye
+	hunter point ye
+	portero hill ye
+
+a. ./eviction-parser eviction-notices.json -n "Visitacion Valley" "Bayview Hunters Point" "Portrero Hill" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d10a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Visitacion Valley" "Bayview Hunters Point" "Portrero Hill" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d10b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Visitacion Valley" "Bayview Hunters Point" "Portrero Hill" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d10c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Visitacion Valley" "Bayview Hunters Point" "Portrero Hill" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d10d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
+
+district 11
+	Oceanview/Merced/Ingleside ye
+	outer mission ye
+	excelsior ye
+
+a. ./eviction-parser eviction-notices.json -n "Oceanview/Merced/Ingleside" "Outer Mission" "Excelsior" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d11a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
+b. ./eviction-parser eviction-notices.json -n "Oceanview/Merced/Ingleside" "Outer Mission" "Excelsior" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d11b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+c. ./eviction-parser eviction-notices.json -n "Oceanview/Merced/Ingleside" "Outer Mission" "Excelsior" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d11c-demo-ellis-condo.csv
+d. ./eviction-parser eviction-notices.json -n "Oceanview/Merced/Ingleside" "Outer Mission" "Excelsior" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d11d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
 
 notes
 	strip all eviction notices that are too early (<2009?)
@@ -141,7 +149,9 @@ notes
 	need to get chi square area to the right 
 ^all done
 - need to aggregate all neighborhoods of a district into one counts for later
-	-d selector for district 
+	-d selector for district
+- need to do inner district analysis with more specific criteria
+- need to write up paper
 
 dater manipulation
 	- remove the golden gate park because only 5 evictions
