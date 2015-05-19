@@ -258,9 +258,16 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
 int getDF(std::vector<NeighborhoodCounts> matrix)
 {
     int numColumns = 0;
-    for (int i = 0; i < matrix[0].counts.size(); i++)
+
+    for (int j = 0; j < matrix[0].counts.size(); j++)
     {
-        if (matrix[0].counts[i] > 0) numColumns++;
+        bool columnGreaterFive = true;
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            if (matrix[i].counts[j] < 5) columnGreaterFive = false;
+        }
+        if (columnGreaterFive) numColumns++;
     }
+        
     return (numColumns - 1) * (matrix.size() - 1);
 }
