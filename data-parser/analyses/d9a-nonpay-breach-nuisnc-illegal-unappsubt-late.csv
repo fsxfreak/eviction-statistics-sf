@@ -14,4 +14,4 @@ Portola,NON_PAYMENT,2.2637
 Portola,BREACH,0.1462
 Portola,NUISANCE,0.9155
 Portola,LATE_PAY,4.5647
-chi,12.4686,df,10,pVal,0.2549
+chi,12.4686,df,6,pVal,0.0523

@@ -268,6 +268,8 @@ int getDF(std::vector<NeighborhoodCounts> matrix)
         }
         if (columnGreaterFive) numColumns++;
     }
+
+    std::cout << numColumns << '\t' << matrix.size() << std::endl;
         
     return (numColumns - 1) * (matrix.size() - 1);
 }
