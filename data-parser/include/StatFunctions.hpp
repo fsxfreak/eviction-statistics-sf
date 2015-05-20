@@ -9,8 +9,11 @@ nonpayment,breach,nuisance,illegal,failsignrenew,accessdenial,unapprovedsubtenan
 rows -> neighborhoods
 */
 
-double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df);
+double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df, std::vector<std::string> districts);
 double chiAreaRight(double testStatistic, int df);
 int getDF(std::vector<NeighborhoodCounts> matrix);
+bool neighborhoodInDistrict(const std::string& neighborhoodName, const std::string& district);
+
+
 
 #endif

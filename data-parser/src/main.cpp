@@ -146,37 +146,61 @@ Indices getIndex(const std::string& reason)
     if (reason.compare("GOOD_SAMARITAN") == 0) return GOOD_SAMARITAN;
 }
 
+bool neighborhoodMode = false;
+bool columnMode = false;
+bool districtMode = false;
+
 void parseArgs(std::string& filename
              , std::vector<std::string>& neighs
              , std::vector<Indices>& cols
+             , std::vector<std::string>& dists
              , int argc
              , const char* argv[])
 {
     const std::string NEIGH_SELECTOR = "-n";
     const std::string COL_SELECTOR   = "-c";
+    const std::string DISTR_SELECTOR = "-d";
 
     if (argc > 1)
     {
         filename = argv[1];
-        bool neighborhoodMode = true;
         for (int i = 2; i < argc; i++)
         {
             std::string arg = argv[i];
 
             if (arg.compare(NEIGH_SELECTOR) == 0)
+            {
                 neighborhoodMode = true;
+                columnMode = false;
+                districtMode = false;
+            }
             else if (arg.compare(COL_SELECTOR) == 0)
+            {
                 neighborhoodMode = false;
+                columnMode = true;
+                districtMode = false;
+            }
+            else if (arg.compare(DISTR_SELECTOR) == 0)
+            {
+                neighborhoodMode = false;
+                columnMode = false;
+                districtMode = true;
+            }
 
             if (neighborhoodMode)
             {
                 if (arg.compare(NEIGH_SELECTOR) != 0)
                     neighs.push_back(arg);
             }
-            else
+            else if (columnMode)
             {
                 if (arg.compare(COL_SELECTOR) != 0)
                     cols.push_back(getIndex(arg));
+            }
+            else if (districtMode)
+            {
+                if (arg.compare(DISTR_SELECTOR) != 0)
+                    dists.push_back(arg);
             }
         }
     }
@@ -229,8 +253,9 @@ int main(int argc, const char* argv[])
     std::string evictionFilename = "eviction-notices.json";
     std::vector<std::string> selectedNeighborhoods;
     std::vector<Indices> selectedColumns;
+    std::vector<std::string> selectedDistricts;
 
-    parseArgs(evictionFilename, selectedNeighborhoods, selectedColumns, argc, argv);
+    parseArgs(evictionFilename, selectedNeighborhoods, selectedColumns, selectedDistricts, argc, argv);
 
     std::string evictions = getJSON(evictionFilename);
 
@@ -251,7 +276,7 @@ int main(int argc, const char* argv[])
     auto selectedColumnCounts = selectColumns(selectedColumns, counts);
 
     int df = 0;
-    double chi = chiSquareStatistic(selectedColumnCounts, df);
+    double chi = chiSquareStatistic(selectedColumnCounts, df, selectedDistricts);
     double pVal = chiAreaRight(chi, df);
     std::cout << "chi,"   << chi 
               << ",df,"   << df

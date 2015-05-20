@@ -160,8 +160,12 @@ double chiAreaRight(double x, int df)
 }
 
 //hill, I. D. and Pike, M. C. Algorithm 299
-double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df)
+double chiSquareStatistic(std::vector<NeighborhoodCounts> counts
+                        , int& df
+                        , std::vector<std::string> districts)
 {
+    bool districtMode = (districts.size() > 0);
+
     std::vector<int> rowTotals;
     std::vector<int> columnTotals(19);
 
@@ -229,6 +233,12 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df)
     int numRows = 0;
     int numCols = 0;
 
+    std::vector<NeighborhoodCounts> districtCounts(districts.size());
+    for (int k = 0; k < districts.size(); k++)
+    {
+        districtCounts[k].neighborhoodName = districts[k];
+    }
+
     double chiStatistic = 0;
     i = 0;
     std::for_each (counts.cbegin(), counts.cend(), 
@@ -252,15 +262,85 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df)
 
                 double component = (observed - expected) * (observed - expected) / expected; 
                 chiStatistic += component;
-                std::cout << getComponentLabel(row, j) << ',' << component << std::endl;
+
+                if (!districtMode)
+                    std::cout << getComponentLabel(row, j) << ',' << component << std::endl;
+                else
+                {
+                    for (int k = 0; k < districtCounts.size(); k++)
+                    {
+                        if (neighborhoodInDistrict(row.neighborhoodName, districtCounts[k].neighborhoodName))
+                            districtCounts[k].counts[j] += component;
+                    }
+                }
             }
             i++;
         }
     );
+
+    for (auto &e : districtCounts)
+    {
+        for (int i = 0; i < e.counts.size(); i++)
+        {
+            if (e.counts[i] > 0)
+                std::cout << getComponentLabel(e, i) << ',' << e.counts[i] << std::endl;
+        }
+    }
 
     numCols /= numRows;
 
     df = (numCols - 1) * (numRows - 1);
 
     return chiStatistic;
+}
+
+bool neighborhoodInDistrict(const std::string& neighborhoodName, const std::string& district)
+{
+    std::vector<std::vector<std::string>> DISTRICTS(11);
+    DISTRICTS[0].push_back("Outer Richmond");
+    DISTRICTS[0].push_back("Inner Richmond");
+    DISTRICTS[0].push_back("Lone Mountain/USF");
+
+    DISTRICTS[1].push_back("Presidio Heights");
+    DISTRICTS[1].push_back("Marina");
+    DISTRICTS[1].push_back("Russian Hill");
+    DISTRICTS[1].push_back("Pacific Heights");
+
+    DISTRICTS[2].push_back("North Beach");
+    DISTRICTS[2].push_back("Nob Hill");
+
+    DISTRICTS[3].push_back("Sunset/Parkside");
+
+    DISTRICTS[4].push_back("Haight Ashbury");
+    DISTRICTS[4].push_back("Hayes Valley");
+    DISTRICTS[4].push_back("Western Addition");
+
+    DISTRICTS[5].push_back("Tenderloin");
+    DISTRICTS[5].push_back("South of Market");
+    DISTRICTS[5].push_back("Financial District/South Beach");
+
+    DISTRICTS[6].push_back("Lakeshore");
+
+    DISTRICTS[7].push_back("Noe Valley");
+    DISTRICTS[7].push_back("Twin Peaks");
+    DISTRICTS[7].push_back("Glen Park");
+
+    DISTRICTS[8].push_back("Portola");
+    DISTRICTS[8].push_back("Bernal Heights");
+    DISTRICTS[8].push_back("Mission");
+
+    DISTRICTS[9].push_back("Visitacion Valley");
+    DISTRICTS[9].push_back("Bayview Hunters Point");
+    DISTRICTS[9].push_back("Portrero Hill");
+
+    DISTRICTS[10].push_back("Oceanview/Merced/Ingleside");
+    DISTRICTS[10].push_back("Outer Mission");
+    DISTRICTS[10].push_back("Excelsior");
+
+    int districtNum = district[0] - '0';
+
+    for (int i = 0; i < DISTRICTS[districtNum - 1].size(); i++)
+    {
+        return DISTRICTS[districtNum - 1][i].compare(neighborhoodName) == 0;
+    }
 }

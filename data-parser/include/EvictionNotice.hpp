@@ -2,6 +2,7 @@
 #define EVICTION_NOTICE
 
 #include <array>
+#include <vector>
 
 enum Indices
 {
@@ -36,5 +37,6 @@ struct NeighborhoodCounts
     std::string neighborhoodName;
     std::array<double, 19> counts;
 };
+
 
 #endif
