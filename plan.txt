@@ -82,7 +82,7 @@ district 5
 	Western Addition = alamo square = lower pacific heights 
 
 a. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/d5a-nonpay-breach-nuisnc-illegal-unappsubt-late.csv
-b. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d5b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv
+b. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/d5b-failsign-ownermove-capitalimp-substanrehab-roommatesame.csv 
 c. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/d5c-demo-ellis-condo.csv
 d. ./eviction-parser eviction-notices.json -n  "Haight Ashbury" "Hayes Valley" "Western Addition" -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/d5d-nonpay-latepay-breach-ownermovein-capital-ellis-nuisance-illegal-demo.csv
 
