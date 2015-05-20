@@ -250,8 +250,8 @@ int main(int argc, const char* argv[])
 
     auto selectedColumnCounts = selectColumns(selectedColumns, counts);
 
-    double chi = chiSquareStatistic(selectedColumnCounts);
-    int df = getDF(selectedColumnCounts);
+    int df = 0;
+    double chi = chiSquareStatistic(selectedColumnCounts, df);
     double pVal = chiAreaRight(chi, df);
     std::cout << "chi,"   << chi 
               << ",df,"   << df

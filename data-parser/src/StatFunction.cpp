@@ -160,7 +160,7 @@ double chiAreaRight(double x, int df)
 }
 
 //hill, I. D. and Pike, M. C. Algorithm 299
-double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
+double chiSquareStatistic(std::vector<NeighborhoodCounts> counts, int& df)
 {
     std::vector<int> rowTotals;
     std::vector<int> columnTotals(19);
@@ -226,10 +226,14 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
         }
     );
 
+    int numRows = 0;
+    int numCols = 0;
+
     double chiStatistic = 0;
     i = 0;
     std::for_each (counts.cbegin(), counts.cend(), 
         [&] (const NeighborhoodCounts& row) {
+            numRows++;
             for (int j = 0; j < row.counts.size(); j++)
             {
                 bool shouldContinue = false;
@@ -240,6 +244,8 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
                 }
 
                 if (shouldContinue) continue;
+
+                numCols++;
 
                 double observed = row.counts[j];
                 double expected = expecteds[i].counts[j];
@@ -252,24 +258,9 @@ double chiSquareStatistic(std::vector<NeighborhoodCounts> counts)
         }
     );
 
+    numCols /= numRows;
+
+    df = (numCols - 1) * (numRows - 1);
+
     return chiStatistic;
-}
-
-int getDF(std::vector<NeighborhoodCounts> matrix)
-{
-    int numColumns = 0;
-
-    for (int j = 0; j < matrix[0].counts.size(); j++)
-    {
-        bool columnGreaterFive = true;
-        for (int i = 0; i < matrix.size(); i++)
-        {
-            if (matrix[i].counts[j] < 5) columnGreaterFive = false;
-        }
-        if (columnGreaterFive) numColumns++;
-    }
-
-    std::cout << numColumns << '\t' << matrix.size() << std::endl;
-        
-    return (numColumns - 1) * (matrix.size() - 1);
 }
