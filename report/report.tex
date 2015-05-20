@@ -27,6 +27,7 @@
 }
 
 \setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{.5 cm}
 
 %opening
 \title{Causes for Eviction Notices in Assorted Neighborhoods of San Francisco}
@@ -67,45 +68,214 @@ This table and section is for testing.
 
 \section{Inferential Procedures}
 \subsection{District 1}
+
 \begin{table}[h]
 \centering
-\begin{tabular}{|l | l|}
+\begin{tabular}{l | l}
 Neighborhoods & Inner Richmond, Lone Mountain, Outer Richmond \\
-Categories    & Illegal, Nuisance 							  \\
 \end{tabular}
-\caption{Selected Neighborhoods and Categories}
 \end{table}
 \FloatBarrier
 
-Tenant Action\newline
-$\chi ^{2}$ 15.1570, df 10, p-Value 0.1264\newline
-Landlord Action\newline
-$\chi ^{2}$ 10.4669, df 6, p-Value 0.1062\newline
-Development\newline
-$\chi ^{2}$ 0.9854, df 2, p-Value 0.6110\newline
-Just Cause Removal\newline
-$\chi ^{2}$ 39.9610, df 16, p-Value 0.0008\newline
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason	&  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  15.1570  & 10  & 0.1264  \\
+	Landlord Action	       &  10.4669  & 6   & 0.1062 \\
+	Development			   &  0.9854   & 2   & 0.6110 \\
+	Just Cause Removal	   &  39.9610  & 16  & 0.0008 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
 
-
-For District 1, there was Homogeneity shown in Tenant Action, Landlord Action, and Development, however there was not homogeneity shown in just cause removal
+For District 1, there was homogeneity shown in tenant action, landlord action, and development, however there was not homogeneity shown in just cause removal. 
 
 how to illustrate p values, df, chi statistic in beautiful way
 
 \subsection{District 2}
-Seacliff, Presidio Heights, Marina, Russian Hill, Pacific Heights
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods & Seacliff, Presidio Heights, Marina, Russian Hill, Pacific Heights \\
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason	&  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		 & 45.4120 &  15   & 0.0001 		\\
+	Landlord Action	     & 11.8037 &  6     &  	0.0665	\\
+	Development			 & 0.3398 &  6    &  0.9993		\\
+	Just Cause Removal	 & 127.1146   &  24 &  	0.0000		\\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 3}
-North Beach, Nob Hill
-\subsection{District 4}
-Sunset/Parkside
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods & North Beach, Nob Hill \\
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason	&  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		  & 8.0298 &  5  &  0.1955    \\
+	Landlord Action	      & 2.2699 &  3  &  0.7037    \\
+	Development			  & 0.0000 &  1  &  1.0000    \\
+	Just Cause Removal	  & 19.6549 &  8  &  0.0117    \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 5}
-Haight Ashbury, Hayes Valley, Western Addition
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods & Haight Ashbury, Hayes Valley, Western Addition \\
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason				&  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  32.491   &  10 & 0.0003 \\
+	Landlord Action	       &  10.671  & 6  & 0.0991 \\
+	Development			   &  0.9271  &  4 & 0.9206 \\
+	Just Cause Removal	   &  111.3054  & 16  & 0.0000 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 6}
-Tenderloin, South of Market, Financial District/South Beach, Mission Bay
-\subsection{District 7}
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods & Tenderloin, South of Market, Financial District/South Beach, Mission Bay  \\
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason				 &  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  46.9304  & 4  & 0.0000 \\
+	Landlord Action	       &  0.0000  & -2  & 1.0000 \\
+	Development			   &  0.0000  & -2  & 1.0000 \\
+	Just Cause Removal	   &  63.8182  & 4  & 0.0000 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 8}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods & Noe Valley, Glen Park, Twin Peaks
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason				 &  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  10.5992  &  2 & 0.0050 \\
+	Landlord Action	       &  1.1193  &  0 & 1.0000 \\
+	Development			   &  1.1314  & 0  & 1.0000 \\
+	Just Cause Removal	   &  37.6297  &  6 & 0.0000 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 9}
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l}
+	Neighborhoods &  Portola, Bernal Heights/ Bernal North/ Bernal South, Mission/ Inner Mission
+\end{tabular}
+\begin{tabular}{l | l | l | l}
+	
+	Reason				 &  $\chi ^{2}$ & df & p-Values\\
+	Tenant Action 		   & 12.4686   &  6 & 0.0523 \\
+	Landlord Action	       &  1.3052  & 2  & 0.5207 \\
+	Development			   &  19.1170  & 0  & 1.0000 \\
+	Just Cause Removal	   &  133.8546  & 12  & 0.0000 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
 \subsection{District 10}
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l}
+	Neighborhoods & Visitacion valley/Bayview Heights, Bayview Valley, Huner's Point, Portero Hill
+\end{tabular}
+\begin{tabular}{l | l | l | l}
+	
+	Reason				 &  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  3.8906  &  4  & 0.4210 \\
+	Landlord Action	       &  1.5766  &  1  & 0.3173 \\
+	Development			   &  0.0000  &  -1  & 1.0000 \\
+	Just Cause Removal	   &  8.6997  &  5  & 0.1640 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
+
+
 \subsection{District 11}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l | l}
+		Neighborhoods &  Oceanview/Merced/Ingleside, Outer Mission, Excelsior  \\
+	\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin {table}[h]
+\centering
+\begin{tabular}{l | l | l | l}
+	
+	Reason				 &  $\chi ^{2}$ & df & p-Value \\
+	Tenant Action 		   &  23.1291  &  8  & 0.0032 \\
+	Landlord Action	       &   2.2277 &  2  & 0.3283 \\
+	Development			   &  3.8359  &  2  & 0.1469 \\
+	Just Cause Removal	   &  30.6304  &  14  & 0.0062 \\
+\end{tabular} \newline
+\end{table}
+\FloatBarrier
+
+
+
+
+
 \section{Conclusion}
 sdfsdafasdf
 \newpage
