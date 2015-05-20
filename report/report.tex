@@ -49,7 +49,16 @@ Renter eviction leads to the displacement of families and an influx of people at
 \section{Data Collection}
 We downloaded data on eviction statistics from SF OpenData and counted each of the reasons for eviction with a program we designed and created using C++. For some of these expected counts, the data was less than five so we were unable to incorporate it in our testing. After separating the data into eleven districts based off location, we performed $\chi ^{2}$ Data Tests for Homogeneity using the valid counts.
 \section{Data Context}
-here we explain what the various eviction reasons are, and show maps of san francisco containing all the neighborhoods split up into regions
+here we explain what the various eviction reasons are, and show maps of San Francisco containing all the neighborhoods split up into regions
+\newline \newline
+Categories: \newline \newline
+\begin{tabular}{l | l}
+
+	Tenant Action    	& nonpayment, breach, nuisance, illegal,\\& unapproved subtenant, latepay \\							 	\\ 
+	Landlord Action     & failsignrenew, owner move in, capital improvement, \\ & substantial rehab, roommate same unit 		\\				 		\\
+	Development    		& demolition, ellis act withdrawal, condo \\ & conversion 			\\					\\ 
+	Just Cause    		& nonpayment, latepayment, breach of lease, \\ &  ownermovein, capitalimprovement, ellisactwithdrawal, \\ & nuisance, illegal, demolition 				 			\\	
+	\end{tabular}
 
 can also talk about the legal issues with the landlord tenant relationship
 \section{Analysis}
@@ -58,7 +67,6 @@ This table and section is for testing.
 
 \section{Inferential Procedures}
 \subsection{District 1}
-Outer Richmond, Inner Richmond, Lone Mountain
 \begin{table}[h]
 \centering
 \begin{tabular}{|l | l|}
@@ -68,6 +76,18 @@ Categories    & Illegal, Nuisance 							  \\
 \caption{Selected Neighborhoods and Categories}
 \end{table}
 \FloatBarrier
+
+Tenant Action\newline
+$\chi ^{2}$ 15.1570, df 10, p-Value 0.1264\newline
+Landlord Action\newline
+$\chi ^{2}$ 10.4669, df 6, p-Value 0.1062\newline
+Development\newline
+$\chi ^{2}$ 0.9854, df 2, p-Value 0.6110\newline
+Just Cause Removal\newline
+$\chi ^{2}$ 39.9610, df 16, p-Value 0.0008\newline
+
+
+For District 1, there was Homogeneity shown in Tenant Action, Landlord Action, and Development, however there was not homogeneity shown in just cause removal
 
 how to illustrate p values, df, chi statistic in beautiful way
 
