@@ -171,6 +171,17 @@ b. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Tend
 c. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Tenderloin" "South of Market" "Financial District/South Beach" -d 3 6 -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/inter-d3-d6-c.csv
 d. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Tenderloin" "South of Market" "Financial District/South Beach" -d 3 6 -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/inter-d3-d6-d.csv
 1 vs 4
-10 vs 9
-5 vs 3
-6 vs 5
+a. ./eviction-parser.exe eviction-notices.json -n "Outer Richmond" "Inner Richmond" "Lone Mountain/USF" "Sunset/Parkside" -d 1 4 -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/inter-d1-d4-a.csv
+b. ./eviction-parser.exe eviction-notices.json -n "Outer Richmond" "Inner Richmond" "Lone Mountain/USF" "Sunset/Parkside" -d 1 4 -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/inter-d1-d4-b.csv
+c. ./eviction-parser.exe eviction-notices.json -n "Outer Richmond" "Inner Richmond" "Lone Mountain/USF" "Sunset/Parkside" -d 1 4 -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/inter-d1-d4-c.csv
+d. ./eviction-parser.exe eviction-notices.json -n "Outer Richmond" "Inner Richmond" "Lone Mountain/USF" "Sunset/Parkside" -d 1 4 -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/inter-d1-d4-d.csv
+3 vs 5
+a. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Haight Ashbury" "Hayes Valley" "Western Addition" -d 3 5 -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/inter-d3-d5-a.csv
+b. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Haight Ashbury" "Hayes Valley" "Western Addition" -d 3 5 -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/inter-d3-d5-b.csv
+c. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Haight Ashbury" "Hayes Valley" "Western Addition" -d 3 5 -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/inter-d3-d5-c.csv
+d. ./eviction-parser.exe eviction-notices.json -n "North Beach" "Nob Hill" "Haight Ashbury" "Hayes Valley" "Western Addition" -d 3 5 -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/inter-d3-d5-d.csv
+5 vs 6
+a. ./eviction-parser.exe eviction-notices.json -n "Haight Ashbury" "Hayes Valley" "Western Addition" "Tenderloin" "South of Market" "Financial District/South Beach" -d 5 6 -c NON_PAYMENT BREACH NUISANCE ILLEGAL UNAPPROVED_SUBTENANT LATE_PAY > analyses/inter-d5-d6-a.csv
+b. ./eviction-parser.exe eviction-notices.json -n "Haight Ashbury" "Hayes Valley" "Western Addition" "Tenderloin" "South of Market" "Financial District/South Beach" -d 5 6 -c FAIL_SIGN_RENEW OWNER_MOVE_IN CAPITAL_IMPROVEMENT SUBSTANTIAL_REHAB ROOMMATE_SAME_UNIT > analyses/inter-d5-d6-b.csv
+c. ./eviction-parser.exe eviction-notices.json -n "Haight Ashbury" "Hayes Valley" "Western Addition" "Tenderloin" "South of Market" "Financial District/South Beach" -d 5 6 -c DEMOLITION ELLIS_ACT_WITHDRAWAL CONDO_CONVERSION > analyses/inter-d5-d6-c.csv
+d. ./eviction-parser.exe eviction-notices.json -n "Haight Ashbury" "Hayes Valley" "Western Addition" "Tenderloin" "South of Market" "Financial District/South Beach" -d 5 6 -c NON_PAYMENT LATE_PAY BREACH OWNER_MOVE_IN CAPITAL_IMPROVEMENT ELLIS_ACT_WITHDRAWAL NUISANCE ILLEGAL DEMOLITION > analyses/inter-d5-d6-d.csv
